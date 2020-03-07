@@ -920,7 +920,7 @@ var routing = function (router) {
         });
     
     const nodeStatic = require('node-static');
-    const staticFile = new(nodeStatic.Server)('./secret-santa/dist/secret-santa/');
+    const staticFile = new(nodeStatic.Server)('./public/');
 
     router.route('*')
     .get(function (req,res) {
