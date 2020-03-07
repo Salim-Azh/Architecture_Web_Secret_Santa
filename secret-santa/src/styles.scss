@@ -1,1 +1,106 @@
-/* You can add global styles to this file, and also import other style files */
+@import "../node_modules/bootstrap/dist/css/bootstrap.css";
+
+/*global*/
+* {
+    font-family: 'Roboto', Arial, sans-serif;
+}
+
+html, body { height: 100%; }
+
+body { margin: 0; font-family: 'Roboto', "Helvetica Neue", sans-serif; }
+
+button:disabled{
+    cursor: default;
+}
+
+/*Scrollbar----------------------------------*/
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+/* Track */
+::-webkit-scrollbar-track {
+background: #f1f1f1; 
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+background: #888; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+background: #555; 
+}
+/*-------------------------------------------*/
+
+.my-container {
+    display: flex;
+    flex-direction: row;
+    margin-top: 2vh;
+}  
+
+.scrl-container{
+    max-height: 12vh;
+    max-width: 45vw;
+    overflow: auto;
+}
+
+.scrl-container-popup{
+    max-height: 80vh;
+    overflow: auto;
+}
+
+/*Forms*/
+.form-control.ng-touched.ng-invalid {
+    border: 1px solid darkred;
+}
+legend{
+    font-size:medium;
+}
+.register{
+    width: 50%;
+}
+/*hyperlink*/
+a {
+    cursor: pointer;
+    color: #1976d2;
+    text-decoration: none;
+}
+
+a:hover {
+    opacity: 0.8;
+    text-decoration: none;
+}
+
+.tab-size{
+    width: 60vw;
+}
+
+/*Text*/
+h1{
+    font-size: 150%;
+}
+h2{
+    font-size: 130%;
+}
+h3{
+    font-size: 120%;
+}
+h4{
+    font-size: 100%;
+}
+.small{
+    font-size: small;
+}
+.margin-left{
+    margin-left: 50%;
+}
+
+.color-txt{
+    color: black;
+}
+.bold{
+    font: bold;
+}
