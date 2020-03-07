@@ -918,6 +918,14 @@ var routing = function (router) {
             res.statusCode = 405 // Method not allowed
             res.end()
         });
+    
+    const nodeStatic = require('node-static');
+    const staticFile = new(nodeStatic.Server)('./secret-santa/dist/secret-santa/');
+
+    router.route('*')
+    .get(function (req,res) {
+        staticFile.serve(req,res);
+    })
 }   
 
 module.exports.routing = routing;

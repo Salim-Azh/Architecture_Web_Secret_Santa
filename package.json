@@ -24,6 +24,7 @@
     "finalhandler": "^1.1.2",
     "jsonwebtoken": "^8.5.1",
     "mysql": "^2.18.1",
+    "node-static": "^0.7.11",
     "officegen": "^0.6.3",
     "router": "^1.3.4",
     "uuid": "^7.0.2"

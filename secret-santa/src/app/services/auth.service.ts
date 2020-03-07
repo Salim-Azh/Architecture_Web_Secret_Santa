@@ -8,8 +8,8 @@ import { Observable } from 'rxjs';
 })
 export class AuthService {
 
-  private registerUrl = "http://localhost:8081/register"; 
-  private loginUrl = "http://localhost:8081/login";
+  private registerUrl = "/register"; 
+  private loginUrl = "/login";
 
   constructor(private http: HttpClient, private router: Router) { }
 

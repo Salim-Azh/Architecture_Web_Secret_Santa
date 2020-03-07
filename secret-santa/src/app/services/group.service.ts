@@ -7,9 +7,9 @@ import { Observable, Subject } from 'rxjs';
 })
 export class GroupService {
     
-  private grpUrl = "http://localhost:8081/groups"
-  private checkGrpUrl = "http://localhost:8081/check/groups";
-  private groupInvitUrl = "http://localhost:8081/groups/invitation";
+  private grpUrl = "/groups"
+  private checkGrpUrl = "/check/groups";
+  private groupInvitUrl = "/groups/invitation";
 
   private _listners = new Subject<any>()
 

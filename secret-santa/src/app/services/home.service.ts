@@ -7,8 +7,8 @@ import { Observable } from 'rxjs';
 })
 export class HomeService {
 
-  private homeUrl = "http://localhost:8081/home";
-  private invitUrl = "http://localhost:8081/home/invits"
+  private homeUrl = "/home";
+  private invitUrl = "/home/invits"
 
   constructor(private http: HttpClient) { }
 

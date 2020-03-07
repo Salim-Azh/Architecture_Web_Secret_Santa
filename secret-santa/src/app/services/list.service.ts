@@ -8,11 +8,11 @@ import { Subject, Observable } from 'rxjs';
 
 export class ListService {
   
-  private listsUrl = "http://localhost:8081/mylists";
-  private listDetailsUrl  = "http://localhost:8081/mylists/details";
-  private listDetailsForGroupUrl = "http://localhost:8081/mylists/details/grp";
-  private selectGiftUrl = "http://localhost:8081/mylists/details/selectgift";
-  private checkOwnerUrl = "http://localhost:8081/check/lists";
+  private listsUrl = "/mylists";
+  private listDetailsUrl  = "/mylists/details";
+  private listDetailsForGroupUrl = "/mylists/details/grp";
+  private selectGiftUrl = "/mylists/details/selectgift";
+  private checkOwnerUrl = "/check/lists";
 
   constructor(private http: HttpClient) { }
 
