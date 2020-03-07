@@ -23,6 +23,6 @@ http.createServer(function onRequest(request, response) {
     
     router(request, response, finalhandler(request, response));
 
-}).listen(PORT);
+}).listen(process.env.PORT || PORT);
 
 api.routing(router);
