@@ -1,0 +1,82 @@
+<div class="pt-5 row justify-content-center">
+    <!--Reactive form-->
+    <form   (submit)="registerUser()" 
+            [formGroup]="form"
+            name = "form" 
+            class="pt-5 register">
+        
+        <fieldset class="card">
+            <div class="card-header" >
+                <legend class="mb-0">Créer un compte</legend>
+            </div>
+            <div class="card-body bkg-color">
+                <div class="form-group">
+                   <div class="invalid-feedback d-block" *ngIf="form.get('username').touched && form.get('username').invalid">
+                        <div *ngIf="form.get('username').errors.required">
+                            NOM D'UTILISATEUR - ce champ est requis
+                        </div>
+                        <div *ngIf="form.get('username').errors.minlength">
+                            NOM D'UTILISATEUR - le nom d'utilisateur est trop court
+                        </div>
+                    </div>
+                    <label for="username" class="sr-only">Nom d'utilisateur</label>
+                    <input 
+                        id="username" 
+                        type="text" 
+                        placeholder="Nom d'utilisateur" 
+                        class="form-control" 
+                        formControlName= "username" 
+                        name="username">
+                </div>
+
+                <div class="form-group">
+                    <div class="invalid-feedback d-block" *ngIf="form.get('mail').touched && form.get('mail').invalid">
+                        <div *ngIf="form.get('mail').errors.required">
+                            ADRESSE EMAIL - ce champ est requis
+                        </div>
+                        <div *ngIf="form.get('mail').errors.pattern">
+                            ADRESSE EMAIL - email invalide
+                        </div>
+                    </div>
+                    <label for="mail" class="sr-only">Adresse email</label>
+                    <input 
+                        id="mail" 
+                        type="email" 
+                        placeholder="Votre adresse email" 
+                        class="form-control" 
+                        formControlName="mail"
+                        name="mail">
+                </div>
+
+                <div class="form-group">
+                    <div class="invalid-feedback d-block" 
+                        *ngIf="form.get('pwd').touched && form.get('pwd').invalid">
+                        
+                        <div *ngIf="form.get('pwd').errors.required">
+                            MOT DE PASSE - ce champ est requis
+                        </div>
+                        <div *ngIf="form.get('pwd').errors.minlength">
+                            MOT DE PASSE - le mot de passe doit contenir au moins {{form.get('pwd').errors.minlength.requiredLength}} caractères
+                    </div>
+                    </div>
+                    <label for="pwd" class="sr-only">Mot de passe</label>
+                    <input 
+                        id="pwd" 
+                        type="password" 
+                        placeholder="Mot de passe" 
+                        class="form-control" 
+                        formControlName="pwd"
+                        name="pwd">
+                </div>
+                <div class="row justify-content-center">
+                    <button 
+                        type="submit" 
+                        class="btn btn-primary"
+                        [disabled]="form.invalid">
+                        S'inscrire
+                    </button>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</div>

@@ -1,0 +1,46 @@
+<h2 class="mt-5">Mes Listes</h2>
+
+<list-form></list-form>
+
+<div class=" row mt-5">
+    <div class="col-md-4 mb-3" *ngFor="let l of lists">
+        <div class="card text-center">
+            <div class="card-body">
+                <h3 class="card-title">{{l.listName}}</h3>
+                <div class="row justify-content-around">
+                    <button type="button" title="Gérer la liste" class="btn btn-primary btn-sm" 
+                        (click)="navigateToDetails(l.idList)" >
+                        Gérer
+                    </button>
+                    <button 
+                        type="button"
+                        class="btn btn-success btn-sm"
+                        title="Partager cette liste"
+                        (click)="share(l.idList)"
+                        [disabled]="l.FK_idGrp">
+                        Partager
+                    </button>
+                    <button 
+                        type="button" 
+                        class="btn btn-outline-danger btn-sm" 
+                        title="Supprimer la liste" 
+                        (click)="confirmClicked = false;cancelClicked = false"
+                        mwlConfirmationPopover
+                        [popoverTitle]="popoverTitle"
+                        [popoverMessage]="popoverMessage"
+                        [confirmText]="confirmText"
+                        [cancelText]="cancelText"
+                        [placement]="placement"
+                        (confirm)="confirmClicked = true;deleteList(l.idList)"
+                        (cancel)="cancelClicked = true"
+                        [disabled]="l.FK_idGrp">
+                        Supprimer
+                    </button>
+                </div>
+            </div>
+            <div class=" small card-footer text-muted font-weight-light">
+                Dernière modif. : {{l.listModifDate}}   
+            </div>
+        </div>
+    </div>
+</div>

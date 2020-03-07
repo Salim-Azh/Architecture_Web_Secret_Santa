@@ -1,0 +1,34 @@
+<nav class="navbar navbar-dark bg-dark navbar-expand-lg">
+    <a class="navbar-brand" title="Secret Santa" (click)="navigate()">
+        <img [src]="imgUrl" width="20%" alt="icône de secret santa">
+        Secret Santa
+    </a>
+
+    <button class="navbar-toggler" type="button" (click)="show()">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarLinks" [ngClass]="{ 'show': display }">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item" [ngClass]="{ 'active': current == 1 }">
+          <a class="nav-link" *ngIf="!isLogged()" [routerLink]="['/login']" (click)="current=1">Connexion</a>
+        </li>
+        <li class="nav-item" [ngClass]="{ 'active': current == 2 }">
+          <a class="nav-link" *ngIf="!isLogged()" [routerLink]="['/register']" (click)="current=2">Inscription</a>
+        </li>
+        <li class="nav-item" [ngClass]="{ 'active': current == 3 }">
+          <a class="nav-link" *ngIf="isLogged()" [routerLink]="['/home']" (click)="current=3">Mon Compte</a>
+        </li>
+        <li class="nav-item" [ngClass]="{ 'active': current == 4 }">
+          <a class="nav-link" *ngIf="isLogged()" [routerLink]="['/mylists']" (click)="current=4">Mes Listes</a>
+        </li>
+        <li class="nav-item" [ngClass]="{ 'active': current == 5 }">
+          <a class="nav-link" *ngIf="isLogged()" [routerLink]="['/groups']" (click)="current=5">Mes Groupes</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" *ngIf="isLogged()" (click)="logout()">Déconnexion</a>
+        </li>
+      </ul>
+    </div>
+</nav>
+  

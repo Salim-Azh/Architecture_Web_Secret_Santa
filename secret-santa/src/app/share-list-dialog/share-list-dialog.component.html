@@ -1,0 +1,16 @@
+<h3 mat-dialog-title>Mes groupes</h3>
+
+<mat-dialog-content>
+    <div *ngFor="let g of groups">
+        <div class="custom-control custom-radio">
+            <input class="custom-control-input" id="{{g.idGrp}}" value="{{g.idGrp}}" type="radio" name="group" [(ngModel)]="radioSelected">
+            <label class="custom-control-label" for="{{g.idGrp}}">{{g.grpName}}</label>    
+        </div>
+    </div>
+</mat-dialog-content>
+
+<mat-dialog-actions class="row justify-content-center">
+    <button type="button" class="btn btn-success btn-sm mr-5" (click)="share()">Partager</button>
+    <button class="btn btn-outline-danger btn-sm" (click)="close()">Close</button>
+</mat-dialog-actions>
+

@@ -1,0 +1,226 @@
+<div *ngIf="owner">
+    <h2 class="mt-5">Liste : {{listName}}</h2>
+    <p *ngIf="isShared">
+        Cette liste est partagée dans le groupe {{grpName}}. Pour modifier votre liste 
+        <button 
+            class="btn btn-sm btn-dark"
+            (click)="confirmClicked=false;cancelClicked=false"
+            mwlConfirmationPopover
+            [popoverTitle]="popoverTitle"
+            [popoverMessage]="popoverMessage2"
+            [confirmText]="confirmText"
+            [cancelText]="cancelText"
+            [placement]="placement2"
+            (confirm)="removeList()"
+            (cancel)="cancelClicked = true">
+            Retirer la liste du groupe
+        </button>
+    </p>
+    <div class="row justify-content-center">
+        <button [disabled]="isShared" class="btn btn-success" *ngIf="!displayCreateForm && !displayUpdateForm" (click)="displayCreate()">Ajouter un cadeau</button>
+        
+        <ng-container 
+            *ngIf="displayCreateForm; then createLegend; else updateLegend">
+        </ng-container>
+
+        <ng-template #createLegend>
+            <form 
+                [ngClass]="{'w-50': displayCreateForm||displayUpdateForm}" 
+                name="form"
+                [formGroup]="form"
+                *ngIf="displayCreateForm || displayUpdateForm"
+                (submit)="addGift()">
+                
+                <fieldset class="card">
+                    <div class="card-header">
+                        <legend class="mb-0">
+                            Créer un cadeau
+                        </legend>
+                    </div>
+
+                    <div class="card-body">
+                        <div class="form-group">
+                            <div class="invalid-feedback d-block" *ngIf="form.get('giftName').touched && form.get('giftName').invalid">
+                                <div *ngIf="form.get('giftName').errors.required">
+                                    Ce champ est requis
+                                </div>
+                                <div *ngIf="form.get('giftName').errors.minlength">
+                                    Le nom doit contenir au moins {{form.get('giftName').errors.minlength.requiredLength}} caractères
+                                </div>
+                            </div>
+                            <label for="giftName" class="sr-only">Nom du cadeau</label>                
+                            <input 
+                                id="giftName" 
+                                type="text" 
+                                placeholder="Nom du cadeau"
+                                class="form-control" 
+                                name="giftName"
+                                formControlName="giftName">
+                        </div>
+                        <div class="form-group">
+                            <label for="giftUrl" class="sr-only">Url</label>
+                            <input 
+                                id="giftUrl" 
+                                type="text" 
+                                placeholder="Lien vers le site du cadeau (Facultatif)"
+                                class="form-control"
+                                name="giftUrl" 
+                                formControlName="giftUrl">
+                        </div>
+                        <div class="form-group">
+                            <label for="giftDescription" class="sr-only">Description</label>
+                            <textarea 
+                                id="giftDescription" 
+                                type="text" 
+                                placeholder="Description du cadeau (Facultatif)"
+                                class="form-control"
+                                name="giftDescription"
+                                formControlName="giftDescription">
+                            </textarea>
+                        </div>  
+                        <div class="form-group">
+                            <label for="giftPrice" class="sr-only">Prix</label>
+                            <input 
+                                id="giftPrice" 
+                                type="number" 
+                                placeholder="--€ (Facultatif)"
+                                class="form-control" 
+                                name="giftPrice" 
+                                formControlName="giftPrice">
+                        </div> 
+                        <div class="row justify-content-around">
+                            <button type="submit" class="btn btn-success" [disabled] = "form.invalid">
+                                Créer
+                            </button>
+                            <button type="button" class="mr-3 btn btn-outline-danger" (click)="displayCreate()">
+                                Annuler
+                            </button>
+                        </div>
+                        
+                    </div>
+                </fieldset>
+            </form>
+        </ng-template>
+
+        <ng-template #updateLegend>
+            <form 
+                [ngClass]="{'w-50': displayCreateForm||displayUpdateForm}" 
+                name="form"
+                [formGroup]="form"
+                *ngIf="displayCreateForm || displayUpdateForm"
+                (submit)="updateGift()">
+                
+                <fieldset class="card">
+                    <div class="card-header">
+                        <legend class="mb-0">
+                            Modifier le cadeau
+                        </legend>
+                    </div>
+
+                    <div class="card-body">
+                        <div class="form-group">
+                            <div class="invalid-feedback d-block" *ngIf="form.get('giftName').touched && form.get('giftName').invalid">
+                                <div *ngIf="form.get('giftName').errors.required">
+                                    Ce champ est requis
+                                </div>
+                                <div *ngIf="form.get('giftName').errors.minlength">
+                                    Le nom doit contenir au moins {{form.get('giftName').errors.minlength.requiredLength}} caractères
+                                </div>
+                            </div>
+                            <label for="giftName" class="sr-only">Nom du cadeau</label>                
+                            <input 
+                                id="giftName" 
+                                type="text" 
+                                placeholder="Nom du cadeau"
+                                class="form-control" 
+                                name="giftName"
+                                formControlName="giftName">
+                        </div>
+                        <div class="form-group">
+                            <label for="giftUrl" class="sr-only">Url</label>
+                            <input 
+                                id="giftUrl" 
+                                type="text" 
+                                placeholder="Lien vers le site du cadeau (Facultatif)"
+                                class="form-control"
+                                name="giftUrl" 
+                                formControlName="giftUrl">
+                        </div>
+                        <div class="form-group">
+                            <label for="giftDescription" class="sr-only">Description</label>
+                            <textarea 
+                                id="giftDescription" 
+                                type="text" 
+                                placeholder="Description du cadeau (Facultatif)"
+                                class="form-control"
+                                name="giftDescription"
+                                formControlName="giftDescription">
+                            </textarea>
+                        </div>  
+                        <div class="form-group">
+                            <label for="giftPrice" class="sr-only">Prix</label>
+                            <input 
+                                id="giftPrice" 
+                                type="number" 
+                                placeholder="--€ (Facultatif)"
+                                class="form-control" 
+                                name="giftPrice" 
+                                formControlName="giftPrice">
+                        </div> 
+                        <div class="row justify-content-around">
+                            <button type="submit" class="btn btn-success" [disabled] = "form.invalid">
+                                Modifier
+                            </button>
+                            <button type="button" class="mr-3 btn btn-outline-danger" (click)="hideUpdateForm()">
+                                Annuler
+                            </button>
+                        </div>   
+                    </div>
+                </fieldset>
+            </form>
+        </ng-template>
+    </div>
+
+    <div class=" row mt-5">
+        <div class="col-md-4 mb-3" *ngFor="let g of gifts">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h3 class="card-title">
+                        {{g.giftName}}
+                    </h3>
+                    <p>{{g.giftPrice | currency : 'EUR'}}</p>
+                    <div class= "scrl-container">
+                        <a [href]="g.giftUrl" title="liens vers le cadeau">
+                            {{g.giftUrl}}
+                        </a>
+                        <p *ngIf="g.giftDescription">
+                            Description : {{g.giftDescription}}
+                        </p>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="row justify-content-around">
+                        <button title="Modifier" class="btn btn-primary btn-sm" (click)="updateform(g.idGift)" [disabled]="isShared">
+                            Modifier
+                        </button>
+                        <button 
+                            title="Supprimer"
+                            class="btn btn-danger btn-sm"
+                            (click)="confirmClicked = false;cancelClicked = false"
+                            mwlConfirmationPopover
+                            [popoverTitle]="popoverTitle"
+                            [popoverMessage]="popoverMessage"
+                            [confirmText]="confirmText"
+                            [cancelText]="cancelText"
+                            [placement]="placement"
+                            (confirm)="confirmClicked = true;delete(g.idGift)"
+                            (cancel)="cancelClicked = true"
+                            [disabled]="isShared">
+                            Supprimer
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

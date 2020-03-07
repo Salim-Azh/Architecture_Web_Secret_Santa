@@ -1,0 +1,54 @@
+<div class="scrl-container-popup">
+    <ng-container
+        *ngIf="ok; then listLegend; else msgLegend">
+    </ng-container>
+
+    <ng-template #listLegend>
+        <h3>Liste de {{username}} : {{listName}}</h3>
+        <div class="mt-5 color-txt">
+            <div class="mb-3" *ngFor="let g of gifts">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h3 class="card-title">
+                            {{g.giftName}}
+                        </h3>
+                        <p>{{g.giftPrice | currency : 'EUR'}}</p>
+                        <div class= "scrl-container">
+                            <a [href]="g.giftUrl" title="liens vers le cadeau">
+                                {{g.giftUrl}}
+                            </a>
+                            <p *ngIf="g.giftDescription">
+                                Description : {{g.giftDescription}}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <div class="row justify-content-around">
+                            <button 
+                                type="button"
+                                *ngIf="!g.username"
+                                title="Sélectionner ce cadeau"
+                                class="btn btn-primary btn-sm"
+                                (click)="select(g.idGift)">
+                                Offrir
+                            </button>
+                            <p *ngIf="g.username">{{g.msg}} 
+                                <button 
+                                    *ngIf="g.username==currentSessionUsername" 
+                                    type="button" 
+                                    class="btn btn-sm btn-outline-danger"
+                                    (click)="cancel(g.idGift)">
+                                    Annuler
+                                </button>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>    
+    </ng-template>
+
+    <ng-template #msgLegend>
+        <p>{{username}} n'a pas encore partagé de liste</p>
+    </ng-template>
+</div>

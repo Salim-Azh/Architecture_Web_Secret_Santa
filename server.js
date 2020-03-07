@@ -4,8 +4,8 @@ const Router = require('router');
 const api = require('./api');
 
 var router = new Router();
-const PORT = 8081;
-
+const PORT = process.env.PORT || 8081;
+console.log(PORT);
 http.createServer(function onRequest(request, response) {
     // Cross Origin Ressource Sharing headers
 	response.setHeader('Access-Control-Allow-Origin', '*');
@@ -23,6 +23,6 @@ http.createServer(function onRequest(request, response) {
     
     router(request, response, finalhandler(request, response));
 
-}).listen(process.env.PORT || PORT);
+}).listen( PORT);
 
 api.routing(router);

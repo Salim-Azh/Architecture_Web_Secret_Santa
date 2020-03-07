@@ -1,0 +1,50 @@
+<div class="row justify-content-center">
+    <button class="btn btn-success" *ngIf="!displayForm" (click)="display()">Créer un groupe</button>
+    
+    <form 
+        name="form"
+        [formGroup]="form"
+        (submit)="addGrp()"
+        *ngIf="displayForm">
+
+        <fieldset class="card">
+            <div class="card-header">
+                <legend class="mb-0">
+                    Créer un groupe
+                </legend>
+            </div>
+            <div class="card-body">
+                <div class="form-group">
+                    <div class="invalid-feedback d-block" *ngIf="form.get('name').touched && form.get('name').invalid">
+                        <div *ngIf="form.get('name').errors.required">
+                            Ce champ est requis
+                        </div>
+                        <div *ngIf="form.get('name').errors.minlength">
+                            Le nom doit contenir au moins {{form.get('name').errors.minlength.requiredLength}} caractères
+                        </div>
+                    </div>
+                    <label for="name" class="sr-only">Nom du groupe</label>
+                    <input 
+                        id="name" 
+                        type="text" 
+                        placeholder="Nom de la liste"
+                        class="form-control" 
+                        name="name"
+                        formControlName="name">
+                </div>
+                <div class="row justify-content-around">
+                    <button 
+                        type="submit"
+                        class="btn btn-success" 
+                        [disabled]="form.get('name').invalid">
+                        Créer
+                    </button>
+                    <button type="button" class="mr-3 btn btn-outline-danger" (click)="display()">
+                        Annuler
+                    </button>
+                </div>
+                 
+            </div>
+        </fieldset>
+    </form>
+</div>

@@ -1,0 +1,45 @@
+<div class="pt-5">
+    <h2>Mon compte</h2>
+    <div class="card mt-5">
+        <h2 class="card-header center">{{username}}</h2>
+        <div class="card-body">
+
+          <div class="table-responsive" *ngIf="invits.length>0">
+            <table class="table table-striped">
+              <caption class="sr-only">Vos invitation</caption>
+                <thead class="thead-dark">
+                  <tr>
+                    <th scope="col">Invitation </th>
+                    <th scope="col"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of invits;let i=index">
+                    <td> {{item.msg}} </td>
+                    <td class="row justify-content-around">
+                      <form name="form" (submit)="acceptInvit(i)">
+                        <button type="submit" class="btn btn-success btn-sm">Accepter</button>
+                      </form>
+                      <form (submit)="refuseInvit(i)">
+                        <button type="submit" class="btn btn-danger btn-sm">Refuser</button>
+                      </form>
+                    </td>
+                  </tr>
+                </tbody>
+            </table>
+          </div>
+        </div>
+    </div> 
+</div>
+<!-- <input 
+      type="hidden" 
+      name="idGrp" 
+      id="idGrp" 
+      [ngModel]="i+1" 
+      formControlName="idGrp">
+    <input 
+      type="hidden" 
+      name="idInvitation" 
+      id="idInvitation" 
+      [ngModel]="i + 1" 
+      formControlName="idInvitation">-->

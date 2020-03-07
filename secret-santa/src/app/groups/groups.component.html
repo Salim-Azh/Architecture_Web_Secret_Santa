@@ -1,0 +1,41 @@
+<h2 class="mt-5">Mes Groupes</h2>
+
+<group-form></group-form>
+
+<div class=" row mt-5">
+    <div class="col-md-4 mb-3" *ngFor="let g of groups">
+        <div class="card text-center">
+            <div class="card-body">
+                <h3 class="card-title">{{g.grpName}}</h3>
+                <div class="row justify-content-around">
+                    <button 
+                        type="button" 
+                        title="Consulter pour gérer" 
+                        class="btn btn-primary btn-sm" 
+                        (click)="navigateToGroup(g.FK_idGrp)" >
+                        Consulter
+                    </button>
+                    <button 
+                        type="button"
+                        class="btn btn-outline-danger btn-sm" 
+                        title="Supprimer le groupe" 
+                        *ngIf="g.grpAdmin"
+                        (click)="confirmClicked = false;cancelClicked = false"
+                        mwlConfirmationPopover
+                        [popoverTitle]="popoverTitle"
+                        [popoverMessage]="popoverMessage"
+                        [confirmText]="confirmText"
+                        [cancelText]="cancelText"
+                        [placement]="placement"
+                        (confirm)="deleteGroup(g.FK_idGrp)"
+                        (cancel)="cancelClicked = true">
+                        Supprimer
+                    </button>
+                </div>
+            </div>
+            <div class=" small card-footer text-muted font-weight-light">
+                Créer le : {{g.grpCreationDate}}
+            </div>
+        </div>
+    </div>
+</div>
