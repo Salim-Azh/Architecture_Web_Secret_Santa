@@ -5,7 +5,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 @Component({
   selector: 'sign-in-form',
   templateUrl: './sign-in-form.component.html',
-  styleUrls: ['./sign-in-form.component.scss']
+  styleUrls: []
 })
 export class SignInFormComponent implements OnInit {
 
