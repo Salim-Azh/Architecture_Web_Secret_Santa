@@ -7,6 +7,9 @@ const gift = require('./models/gift');
 const invitation = require('./models/invitation')
 const memberRemover = require('./removeGrpMember');
 const tokenChecker = require('./checkToken')
+const crypto = require('crypto');
+var CryptoJS = require("crypto-js");
+
 
 /*
 tokenChecker.checkToken() is a middleware. 
@@ -128,6 +131,18 @@ var routing = function (router) {
                                 res.end(JSON.stringify("Ce nom d'utilisateur existe déjà"))
                             }
                             else{
+                                const genRandomString = function(length){
+                                    return crypto.randomBytes(Math.ceil(length/2))
+                                            .toString('hex') /** convert to hexadecimal format */
+                                            .slice(0,length);   /** return required number of characters */
+                                };
+
+                                let salt = genRandomString(25);
+                                let hash = crypto.createHmac('sha512', salt)
+                                                .update(body.pwd)
+                                                .digest('hex');
+                                body.pwd = hash;
+                                body.salt = salt;
                                 user.createUser(body, function (err2, rows2) {
                                     if (err2) {
                                         res.statusCode =InternalServerError;
@@ -177,18 +192,24 @@ var routing = function (router) {
                     if(row.user.length == 0){
                         res.statusCode = Unauthorized;
                         res.end('Invalid email');
-                    } 
-                    else if(row.user[0].pwd != body.pwd){
-                        res.statusCode = Unauthorized;
-                        res.end('Invalid password');
                     }
                     else{
-                        let body = row.user[0];
-                        // JWT token generation
-                        let payload = { subject: body.idUser };
-                        let token = jwt.sign(payload, tokenChecker.key);
-                        res.statusCode = Ok;
-                        res.end(JSON.stringify({token}));
+                        const hash = row.user[0].pwdHash;
+                        const salt = row.user[0].salt;
+
+                        let hash2 = crypto.createHmac('sha512', salt).update(body.pwd).digest('hex');
+
+                        if (hash === hash2) {
+                            let body = row.user[0];
+                            // JWT token generation
+                            let payload = { subject: body.idUser };
+                            let token = jwt.sign(payload, tokenChecker.key);
+                            res.statusCode = Ok;
+                            res.end(JSON.stringify({token}));
+                        } else {
+                            res.statusCode = Unauthorized;
+                            res.end('Invalid password');
+                        }
                     }
                 });
     

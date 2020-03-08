@@ -15,8 +15,8 @@ var user = {
      * @description create the user in the database
      */
     createUser : function (user,callback) {
-        let sql = "INSERT INTO user(username, mail, pwd) VALUES (?,?,?)";
-        return db.query(sql, [user.username, user.mail, user.pwd], callback);
+        let sql = "INSERT INTO user(username, mail, pwdHash, salt) VALUES (?,?,?,?)";
+        return db.query(sql, [user.username, user.mail, user.pwd, user.salt], callback);
     },
 
     /**
