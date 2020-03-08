@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le :  sam. 07 mars 2020 à 16:58
+-- Généré le :  Dim 08 mars 2020 à 19:51
 -- Version du serveur :  10.3.9-MariaDB
 -- Version de PHP :  7.2.10
 
@@ -37,21 +37,6 @@ CREATE TABLE IF NOT EXISTS `belong_to` (
   KEY `FK_idGrp` (`FK_idGrp`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Déchargement des données de la table `belong_to`
---
-
-INSERT INTO `belong_to` (`FK_idUser`, `FK_idGrp`, `grpAdmin`) VALUES
-(34, 10, 1),
-(34, 11, 1),
-(34, 12, 1),
-(34, 13, 1),
-(34, 14, 1),
-(34, 18, 1),
-(51, 15, 1),
-(51, 16, 1),
-(51, 17, 1);
-
 -- --------------------------------------------------------
 
 --
@@ -71,19 +56,6 @@ CREATE TABLE IF NOT EXISTS `gift` (
   KEY `FK_buyer` (`FK_buyer`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Déchargement des données de la table `gift`
---
-
-INSERT INTO `gift` (`FK_idList`, `idGift`, `FK_buyer`, `giftName`, `giftUrl`, `giftDescription`, `giftPrice`) VALUES
-(46, 3, NULL, 'Cadeau spécial', NULL, NULL, NULL),
-(46, 4, NULL, 'bbbb zsqd', NULL, NULL, NULL),
-(67, 1, NULL, 'supprime moi si tu peux', NULL, NULL, NULL),
-(73, 1, NULL, 'Cadeau spécial', 'http://playsation.com', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum doloribus non harum inventore laborum ut neque beatae architecto, reiciendis vel voluptate cum voluptatem temporibus dolore!', 42),
-(73, 5, NULL, 'Cadeau spécial', NULL, NULL, NULL),
-(75, 1, NULL, 'Cadeau spécial1', NULL, NULL, NULL),
-(75, 2, NULL, 'Cadeau spécial', NULL, NULL, NULL);
-
 -- --------------------------------------------------------
 
 --
@@ -97,21 +69,6 @@ CREATE TABLE IF NOT EXISTS `grp` (
   `grpCreationDate` date NOT NULL,
   PRIMARY KEY (`idGrp`)
 ) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
-
---
--- Déchargement des données de la table `grp`
---
-
-INSERT INTO `grp` (`idGrp`, `grpName`, `grpCreationDate`) VALUES
-(10, 'test', '2020-03-02'),
-(11, 'dzs', '2020-03-02'),
-(12, 'yan', '2020-03-02'),
-(13, 'ui', '2020-03-02'),
-(14, 'Groupe de birane ba', '2020-03-02'),
-(15, 'ui', '2020-03-02'),
-(16, 'test', '2020-03-02'),
-(17, 'Groupe2', '2020-03-04'),
-(18, 'GroupeAide', '2020-03-05');
 
 -- --------------------------------------------------------
 
@@ -133,19 +90,6 @@ CREATE TABLE IF NOT EXISTS `invitation` (
   KEY `FK_to` (`FK_to`)
 ) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=latin1;
 
---
--- Déchargement des données de la table `invitation`
---
-
-INSERT INTO `invitation` (`idInvitation`, `FK_from`, `FK_to`, `FK_idGrp`, `invitationDate`, `accepted`) VALUES
-(3, 51, 53, 15, '2020-03-03 20:20:42', 1),
-(7, 34, 53, 10, '2020-03-05 15:52:21', 1),
-(11, 34, 53, 10, '2020-03-06 06:59:52', 1),
-(18, 34, 51, 10, '2020-03-06 07:27:20', 1),
-(19, 34, 51, 10, '2020-03-06 07:29:17', 1),
-(27, 34, 53, 10, '2020-03-06 10:54:28', 1),
-(28, 34, 53, 10, '2020-03-06 13:07:27', 1);
-
 -- --------------------------------------------------------
 
 --
@@ -164,18 +108,6 @@ CREATE TABLE IF NOT EXISTS `list` (
   KEY `FK_idGrp` (`FK_idGrp`)
 ) ENGINE=InnoDB AUTO_INCREMENT=78 DEFAULT CHARSET=latin1;
 
---
--- Déchargement des données de la table `list`
---
-
-INSERT INTO `list` (`idList`, `FK_idUser`, `FK_idGrp`, `listName`, `listModifDate`) VALUES
-(46, 34, NULL, 'Ma Liste de Noel', '2020-03-05 15:50:39'),
-(67, 51, NULL, 'ui', '2020-03-02 15:18:35'),
-(73, 53, NULL, 'test', '2020-03-06 12:35:43'),
-(75, 53, NULL, 'l1', '2020-03-04 21:16:57'),
-(76, 34, NULL, 'test', '2020-03-05 14:44:05'),
-(77, 34, NULL, 'ui', '2020-03-05 13:42:03');
-
 -- --------------------------------------------------------
 
 --
@@ -187,20 +119,12 @@ CREATE TABLE IF NOT EXISTS `user` (
   `idUser` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(25) NOT NULL,
   `mail` varchar(50) NOT NULL,
-  `pwd` varchar(50) NOT NULL,
+  `pwdHash` varchar(129) NOT NULL,
+  `salt` varchar(25) NOT NULL,
   PRIMARY KEY (`idUser`),
   UNIQUE KEY `mail` (`mail`),
   UNIQUE KEY `username` (`username`,`mail`)
 ) ENGINE=InnoDB AUTO_INCREMENT=55 DEFAULT CHARSET=latin1;
-
---
--- Déchargement des données de la table `user`
---
-
-INSERT INTO `user` (`idUser`, `username`, `mail`, `pwd`) VALUES
-(34, 'test', 'a.a@gmail.com', 'azeaze'),
-(51, 'salim', 'b.b@g.com', 'azeaze'),
-(53, 'ba', 'c.c@g.com', 'azeaze');
 
 --
 -- Contraintes pour les tables déchargées
