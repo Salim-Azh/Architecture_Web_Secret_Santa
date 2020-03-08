@@ -44,7 +44,6 @@ export class SignInFormComponent implements OnInit {
     this.auth.loginUser(this.form.value)
         .subscribe(
           res => {
-            //console.log(res);
             localStorage.setItem('token', res.token); // store key value token in local storage
             this.router.navigate(['/home']);
           },

@@ -8,7 +8,7 @@ import { ShareListDialogComponent } from '../share-list-dialog/share-list-dialog
 @Component({
   selector: 'lists',
   templateUrl: './lists.component.html',
-  styleUrls: ['./lists.component.scss']
+  styleUrls: []
 })
 export class ListsComponent implements OnInit {
 

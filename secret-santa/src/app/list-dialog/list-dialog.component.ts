@@ -7,7 +7,7 @@ import { HomeService } from '../services/home.service';
 @Component({
   selector: 'list-dialog',
   templateUrl: './list-dialog.component.html',
-  styleUrls: ['./list-dialog.component.scss']
+  styleUrls: []
 })
 export class ListDialogComponent implements OnInit {
 

@@ -6,7 +6,7 @@ import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 @Component({
   selector: 'list-details',
   templateUrl: './list-details.component.html',
-  styleUrls: ['./list-details.component.scss']
+  styleUrls: []
 })
 export class ListDetailsComponent implements OnInit {
 

@@ -6,7 +6,7 @@ import { ListService } from '../services/list.service';
 @Component({
   selector: 'app-share-list-dialog',
   templateUrl: './share-list-dialog.component.html',
-  styleUrls: ['./share-list-dialog.component.scss']
+  styleUrls: []
 })
 export class ShareListDialogComponent implements OnInit {
 

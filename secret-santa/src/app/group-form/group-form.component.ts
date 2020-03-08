@@ -5,7 +5,7 @@ import { GroupService } from '../services/group.service';
 @Component({
   selector: 'group-form',
   templateUrl: './group-form.component.html',
-  styleUrls: ['./group-form.component.scss']
+  styleUrls: []
 })
 export class GroupFormComponent implements OnInit {
 

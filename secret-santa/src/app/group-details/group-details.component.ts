@@ -10,7 +10,7 @@ import { HomeService } from '../services/home.service';
 @Component({
   selector: 'group-details',
   templateUrl: './group-details.component.html',
-  styleUrls: ['./group-details.component.scss']
+  styleUrls: []
 })
 export class GroupDetailsComponent implements OnInit {
 
