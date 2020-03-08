@@ -17,7 +17,7 @@ const key = uuidv4();
  * @param {ServerResponse} res is the corresponding HTTP response
  * @param {*} next the next handler
  * @description  checkToken verify if the token from request headers is valid
- * if yes put req.id if not then return status 401
+ * if yes put the user id in req.id if not then return status 401
  * used as a middleware = (function executed before callback function)
  * @public
  */
