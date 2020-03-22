@@ -32,6 +32,8 @@ import { ShareListDialogComponent } from './share-list-dialog/share-list-dialog.
 import { ListDialogComponent } from './list-dialog/list-dialog.component';
 import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
 
+import { CountdownComponent } from './countdown/countdown.component';
+import { CountdownModule } from "ng2-date-countdown";
 @NgModule({
   declarations: [
     AppComponent,
@@ -49,6 +51,7 @@ import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
     GroupDetailsComponent,
     ShareListDialogComponent,
     ListDialogComponent,
+    CountdownComponent,
   ],
   imports: [
     BrowserModule,
@@ -63,7 +66,8 @@ import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
       focusButton: 'cancel',
       reverseButtonOrder: true,
       cancelButtonType:'warning'
-    })
+    }),
+    CountdownModule
   ],
   providers: [
     ListService,

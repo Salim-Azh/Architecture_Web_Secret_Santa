@@ -106,3 +106,15 @@ h4{
 }
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.title {  
+    margin-bottom: 60px;
+    text-align: center;
+    font: 300 2.25em;
+    text-transform: uppercase;
+    
+    strong {
+      font-weight: 400;
+      color: #ea4c4c;
+    }  
+}

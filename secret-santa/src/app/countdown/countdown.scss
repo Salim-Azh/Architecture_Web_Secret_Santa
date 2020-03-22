@@ -1,0 +1,18 @@
+.countdown {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    .measurements {
+        flex: 0.1;
+        margin-bottom: 3%;
+        font: normal 0.94em;
+        color: #1a1a1a;
+        text-transform: uppercase;
+        padding-right: 2%;
+        .divider {
+            float: right;
+        }
+    }
+}

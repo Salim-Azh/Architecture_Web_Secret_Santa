@@ -1,8 +1,20 @@
 <div class="pt-5">
     <h2>Mon compte</h2>
     <div class="card mt-5">
-        <h2 class="card-header center">{{username}}</h2>
+        <h2 class="card-header center">Bonjour {{username}} </h2>
         <div class="card-body">
+
+          <div class="col justify-content-center text-center">
+            <div>
+              <h4 class="title">Compte à rebours avant <strong>Noël</strong></h4>
+            </div>
+            <div>
+              <app-countdown units="Days | Hours | Minutes | Seconds"  end="December 25, 2020 00:00:00"></app-countdown>
+            </div>
+            <div>
+              <p>Allez vite préparer vos listes pour Santa Oh Oh Oh !</p>
+            </div>
+          </div>
 
           <div class="table-responsive" *ngIf="invits.length>0">
             <table class="table table-striped">
@@ -31,15 +43,3 @@
         </div>
     </div> 
 </div>
-<!-- <input 
-      type="hidden" 
-      name="idGrp" 
-      id="idGrp" 
-      [ngModel]="i+1" 
-      formControlName="idGrp">
-    <input 
-      type="hidden" 
-      name="idInvitation" 
-      id="idInvitation" 
-      [ngModel]="i + 1" 
-      formControlName="idInvitation">-->

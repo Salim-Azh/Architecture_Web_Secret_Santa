@@ -8,7 +8,6 @@ const invitation = require('./models/invitation')
 const memberRemover = require('./removeGrpMember');
 const tokenChecker = require('./checkToken')
 const crypto = require('crypto');
-var CryptoJS = require("crypto-js");
 
 
 /*

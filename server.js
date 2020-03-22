@@ -7,7 +7,7 @@ var router = new Router();
 
 const PORT = process.env.PORT || 8081;
 
-http.createServer(function onRequest(request, response) {
+let server = http.createServer(function onRequest(request, response) {
     // Cross Origin Ressource Sharing headers
 	response.setHeader('Access-Control-Allow-Origin', '*');
 	response.setHeader('Access-Control-Request-Method', '*');
