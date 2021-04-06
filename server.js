@@ -2,6 +2,8 @@ const http = require('http');
 const finalhandler = require('finalhandler');
 const Router = require('router');
 const api = require('./api');
+require('dotenv').config({path: './config/.env'})
+require('./config/db')
 
 var router = new Router();
 
