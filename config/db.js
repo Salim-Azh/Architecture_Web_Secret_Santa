@@ -1,4 +1,5 @@
 const mysql = require('mysql');
+require('dotenv').config({path: './config/.env'})
 
 //Conection pool makes enhance the performance
 // No need to connect and end connection to the db 
@@ -9,7 +10,6 @@ let connection = mysql.createPool({
     password: process.env.PASSWORD,
     database : process.env.DATABASE
 })
-
 connection.getConnection((err, conn) => {
     if (err) {
         if (err.code === 'PROTOCOL_CONNECTION_LOST') {
@@ -22,7 +22,10 @@ connection.getConnection((err, conn) => {
             console.error('Database connection was refused.')
         }
     }
-    if (conn) conn.release()
+    if (conn){
+        console.log("Connected to database")
+        conn.release()
+    }
     return
 })
 
