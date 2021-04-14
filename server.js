@@ -26,6 +26,8 @@ let server = http.createServer(function onRequest(request, response) {
 	
     router(request, response, finalhandler(request, response));
 
-}).listen(PORT);
-
+})	.listen(PORT)
+	.on("listening", ()=>{
+		console.log(`Listening on port ${PORT}`)
+	})
 api.routing(router);
